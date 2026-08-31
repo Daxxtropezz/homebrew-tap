@@ -7,6 +7,7 @@
 [![Homebrew](https://img.shields.io/badge/Homebrew-Tap-FBB040?logo=homebrew\&logoColor=black)](https://brew.sh/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-Daxxtropezz-181717?logo=github)](https://github.com/Daxxtropezz)
+[![Homebrew CI](https://github.com/Daxxtropezz/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Daxxtropezz/homebrew-tap/actions/workflows/tests.yml)
 
 Install and manage Daxxtropezz command-line tools through Homebrew on supported Linux and macOS systems.
 
