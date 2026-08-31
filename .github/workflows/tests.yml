@@ -63,6 +63,10 @@ jobs:
           core: true
           cask: true
 
+      - name: Trust required Homebrew taps
+        run: |
+          brew trust aws/tap
+
       - name: Test ZeroTrustKit
         run: |
           brew install Daxxtropezz/tap/ztk
