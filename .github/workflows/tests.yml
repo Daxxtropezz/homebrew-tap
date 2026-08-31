@@ -1,0 +1,142 @@
+name: Homebrew CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Formula/**"
+      - ".github/workflows/tests.yml"
+
+  pull_request:
+    paths:
+      - "Formula/**"
+      - ".github/workflows/tests.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homebrew-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HOMEBREW_DEVELOPER: "1"
+  HOMEBREW_NO_AUTO_UPDATE: "1"
+  HOMEBREW_NO_INSTALL_FROM_API: "1"
+
+jobs:
+  syntax:
+    name: Formula Syntax & Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with:
+          core: true
+          cask: true
+
+      - name: Tap repository
+        run: |
+          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
+
+      - name: Read all formulae
+        run: |
+          brew readall Daxxtropezz/tap
+
+      - name: Check style
+        run: |
+          brew style Daxxtropezz/tap
+
+      - name: Audit formulae
+        run: |
+          brew audit --strict --tap=Daxxtropezz/tap
+
+  macos:
+    name: macOS Formula Tests
+    runs-on: macos-latest
+    needs: syntax
+
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with:
+          core: true
+          cask: true
+
+      - name: Tap repository
+        run: |
+          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
+
+      - name: Test ZeroTrustKit
+        run: |
+          brew install Daxxtropezz/tap/ztk
+          brew test Daxxtropezz/tap/ztk
+          ztk --version
+          ztk --help
+
+      - name: Test Ghostwipe
+        run: |
+          brew install Daxxtropezz/tap/ghostwipe
+          brew test Daxxtropezz/tap/ghostwipe
+          ghostwipe --version
+          ghostwipe --help
+
+  linux:
+    name: Linux Formula Tests
+    runs-on: ubuntu-latest
+    needs: syntax
+
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with:
+          core: true
+          cask: false
+
+      - name: Tap repository
+        run: |
+          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
+
+      - name: Test ZeroTrustKit
+        run: |
+          brew install Daxxtropezz/tap/ztk
+          brew test Daxxtropezz/tap/ztk
+          ztk --version
+          ztk --help
+
+      - name: Test Ghostwipe
+        run: |
+          brew install Daxxtropezz/tap/ghostwipe
+          brew test Daxxtropezz/tap/ghostwipe
+          ghostwipe --version
+          ghostwipe --help
+          ghostwipe doctor
+
+  test-bot:
+    name: Homebrew Test Bot
+    runs-on: ubuntu-latest
+    needs:
+      - syntax
+      - macos
+      - linux
+
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with:
+          core: true
+          cask: true
+
+      - name: Tap repository
+        run: |
+          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
+
+      - name: Run Homebrew test-bot
+        run: |
+          brew test-bot --only-cleanup-before
+          brew test-bot --only-setup
+          brew test-bot --only-tap-syntax

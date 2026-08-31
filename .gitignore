@@ -1,0 +1,30 @@
+# macOS
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Editors / IDEs
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+
+*.tmp
+*.temp
+*.bak
+
+# Homebrew / local testing
+
+*.tar.gz
+*.sha256
