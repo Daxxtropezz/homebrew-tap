@@ -1,5 +1,5 @@
 class Ztk < Formula
-  desc "DevSecOps bootstrap platform for cloud, security, containers, Kubernetes, and infrastructure tools"
+  desc "DevSecOps bootstrap toolkit for cloud, containers, Kubernetes, and security"
   homepage "https://github.com/Daxxtropezz/ZeroTrustKit"
   url "https://github.com/Daxxtropezz/ZeroTrustKit/archive/refs/tags/v1.2.0.tar.gz"
   sha256 "0c68217ebf378bd2ae66b4f109c2529a1818575b1c16203b782aea48e69f4316"
