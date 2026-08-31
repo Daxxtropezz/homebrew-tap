@@ -1,8 +1,8 @@
 class Ztk < Formula
   desc "DevSecOps bootstrap toolkit for cloud, containers, Kubernetes, and security"
   homepage "https://github.com/Daxxtropezz/ZeroTrustKit"
-  url "https://github.com/Daxxtropezz/ZeroTrustKit/archive/refs/tags/v1.2.0.tar.gz"
-  sha256 "0c68217ebf378bd2ae66b4f109c2529a1818575b1c16203b782aea48e69f4316"
+  url "https://github.com/Daxxtropezz/ZeroTrustKit/archive/refs/tags/v1.2.1.tar.gz"
+  sha256 "d9d421fce91d80dd5d95da7498e95bd38c20ed30d2a22152d9bfd7a51aa43f09"
   license "MIT"
 
   depends_on "bash"
@@ -13,6 +13,6 @@ class Ztk < Formula
 
   test do
     output = shell_output("#{bin}/ztk --help")
-    assert_match "ZeroTrustKit v1.2.0", output
+    assert_match "ZeroTrustKit v1.2.1", output
   end
 end
