@@ -13,18 +13,3 @@
 
 # Documentation
 *.md text eol=lf
-# Normalize repository text files to Unix LF line endings
-* text=auto eol=lf
-
-# Homebrew formulae
-*.rb text eol=lf
-
-# GitHub Actions
-*.yml text eol=lf
-*.yaml text eol=sslf
-
-# Shell scripts
-*.sh text eol=lf
-
-# Documentation
-*.md text eol=lf
