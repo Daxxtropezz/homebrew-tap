@@ -39,10 +39,6 @@ jobs:
           core: true
           cask: true
 
-      - name: Tap repository
-        run: |
-          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
-
       - name: Read all formulae
         run: |
           brew readall Daxxtropezz/tap
@@ -66,10 +62,6 @@ jobs:
         with:
           core: true
           cask: true
-
-      - name: Tap repository
-        run: |
-          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
 
       - name: Test ZeroTrustKit
         run: |
@@ -96,10 +88,6 @@ jobs:
         with:
           core: true
           cask: false
-
-      - name: Tap repository
-        run: |
-          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
 
       - name: Test ZeroTrustKit
         run: |
@@ -130,10 +118,6 @@ jobs:
         with:
           core: true
           cask: true
-
-      - name: Tap repository
-        run: |
-          brew tap Daxxtropezz/tap "$GITHUB_WORKSPACE"
 
       - name: Run Homebrew test-bot
         run: |
